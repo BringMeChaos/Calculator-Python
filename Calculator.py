@@ -1,7 +1,13 @@
+
 OperationList = ['+', '-', '*', '/']
-userFirstNum = int(input("Choose the first number: "))
-userOperation = input("Choose an operation to make from: "+ ','.join(OperationList) + " : ")
-userSecondtNum = int(input("Choose the second number: "))
+
+try:    
+    userFirstNum = int(input("Choose the first number: "))
+    userOperation = input("Choose an operation to make from: "+ ','.join(OperationList) + " : ")
+    userSecondtNum = int(input("Choose the second number: "))
+except ValueError:
+    print("Invalid input. Please enter a valid integer.")
+
 
 print(userOperation)
 print(type(userOperation))
@@ -17,17 +23,23 @@ print(type(userOperation))
 
 # the functions are working, but im not sure if creating a function for each operation is the best way.
 # for now I used the if statments, and if the GUI will require a function, I'll use those as well.
+sentance = "Your answer is: "
 
+def addition(x,y):
+    print(sentance, x+y)
+    return x + y
 
-# def addition (x,y):
-#     print("This is the addition function, the answer is: ", x+y)
-#     return x + y
+def subtraction(x,y):
+    print(sentance, x-y)
+    return x - y
 
-# def subtraction (x,y):
-#     print("This is the subtraction operation, the answer is: ", x-y)
-#     return x - y
+def multiplication(x,y):
+    print(sentance, x*y)
+    return x * y
 
-
+def devision(x,y):
+    print(sentance, x/y)
+    return x / y
 
 # Accepting input, testing cases, and passing to a function: 
 
@@ -35,19 +47,25 @@ print(type(userOperation))
 # - when the / is the other way around - \ notify the user and rout to the devision option
 # when any of the inputs are not numbers (a python error pops, need to find a way to handle such cases.)
 
-sentance = "Your answer is: "
+
 
 if userOperation == '+':
-    # addition(userFirstNum, userSecondtNum) # addition function defined above.
-    print(sentance, int(userFirstNum) + int(userSecondtNum))
+    addition(userFirstNum, userSecondtNum) # addition function defined above.
+    # print(sentance, int(userFirstNum) + int(userSecondtNum))
 elif userOperation == '-':
     # subtraction function
-    print(sentance, int(userFirstNum) - int(userSecondtNum))
+    subtraction(userFirstNum, userSecondtNum)
+    # print(sentance, int(userFirstNum) - int(userSecondtNum))
 elif userOperation == '*':
     # multiplication funtion
-    print(sentance, int(userFirstNum) * int(userSecondtNum))
+    multiplication(userFirstNum, userSecondtNum)
+    # print(sentance, int(userFirstNum) * int(userSecondtNum))
 elif userOperation == '/':
     # devision function
-    print(sentance, int(userFirstNum) / int(userSecondtNum))
+    devision(userFirstNum, userSecondtNum)
+    # print(sentance, int(userFirstNum) / int(userSecondtNum))
 else:
     print("The operation you choose is not from the list of operations. Please try again.")
+
+
+
