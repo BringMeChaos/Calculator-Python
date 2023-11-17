@@ -1,28 +1,59 @@
 
 OperationList = ['+', '-', '*', '/']
 
-try:    
-    userFirstNum = int(input("Choose the first number: "))
+
+# Create a welcome page with different options, like instructions, the Calculetor itself, and maybe an exit option.
+# Create a "MainCalc" function to wrap everything in a function.
+# Keeping in mind that in the future I will create a GUI, and im not sure how it works yet, but I guess different buttons will direct the user to different functions.
+
+
+
+def CalcInput1():
+    try:
+        global userFirstNum
+        userFirstNum = int(input("Choose the first number: "))
+    except ValueError:
+        print("Invalid input. Please enter a valid integer.")
+        CalcInput1()
+    return userFirstNum
+
+CalcInput1()
+
+
+def CalcOperation():
+    global userOperation
     userOperation = input("Choose an operation to make from: "+ ','.join(OperationList) + " : ")
-    userSecondtNum = int(input("Choose the second number: "))
-except ValueError:
-    print("Invalid input. Please enter a valid integer.")
+
+    if userOperation not in OperationList:
+        print("The operation you choose is not valid, please choose one of the operation in the list: "+','.join(OperationList) + " : ")
+        CalcOperation()
+    else:
+        pass
+
+CalcOperation()
 
 
-print(userOperation)
-print(type(userOperation))
+def CalcInput2():
+    try:
+        global userSecondtNum
+        userSecondtNum = int(input("Choose the second number: "))
+    except ValueError:
+        print("Invalid input. Please enter a valid integer.")
+        CalcInput2()
+    return userSecondtNum
 
-# define functions for each operation,
-# later can make an if else base on the input and then call the different functions.
-# when creating if else aldo adress cases where input is not number and other cases like this.
-# keep in mind when writing the code, later a GUI will be added so work in small components.
+CalcInput2()
+
+#  Tests: 
+# print(userOperation)
+# print(type(userOperation))
+
+# define functions for each operation - Done.
+# Basically I decied to make every input an function and each operation a function that can be called when needed.
 
 
+# Operation functions:
 
-# Functions: 
-
-# the functions are working, but im not sure if creating a function for each operation is the best way.
-# for now I used the if statments, and if the GUI will require a function, I'll use those as well.
 sentance = "Your answer is: "
 
 def addition(x,y):
@@ -41,29 +72,17 @@ def devision(x,y):
     print(sentance, x/y)
     return x / y
 
-# Accepting input, testing cases, and passing to a function: 
 
-# cases to notify the user
-# - when the / is the other way around - \ notify the user and rout to the devision option
-# when any of the inputs are not numbers (a python error pops, need to find a way to handle such cases.)
-
-
+# Main logic for different operations
 
 if userOperation == '+':
-    addition(userFirstNum, userSecondtNum) # addition function defined above.
-    # print(sentance, int(userFirstNum) + int(userSecondtNum))
+    addition(userFirstNum, userSecondtNum)
 elif userOperation == '-':
-    # subtraction function
     subtraction(userFirstNum, userSecondtNum)
-    # print(sentance, int(userFirstNum) - int(userSecondtNum))
 elif userOperation == '*':
-    # multiplication funtion
     multiplication(userFirstNum, userSecondtNum)
-    # print(sentance, int(userFirstNum) * int(userSecondtNum))
 elif userOperation == '/':
-    # devision function
     devision(userFirstNum, userSecondtNum)
-    # print(sentance, int(userFirstNum) / int(userSecondtNum))
 else:
     print("The operation you choose is not from the list of operations. Please try again.")
 
